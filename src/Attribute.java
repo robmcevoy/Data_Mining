@@ -5,11 +5,13 @@ public class Attribute {
 	private String name;
 	private int value;
 	private int index;
+	private boolean hasBeenUsed;
 	
 	public Attribute(String name, int index,int[] possibleValues){
 		this.name = name;
 		this.index = index;
 		this.possibleValues = possibleValues;
+		this.hasBeenUsed = false;
 	}
 	
 	public void setValue(int value){
@@ -61,7 +63,21 @@ public class Attribute {
 		return possibleValues.length;
 	}
 	
+	
 	public boolean equals(Object o){
 		return false;
+	}
+	
+	
+	public boolean sameAttribute(Attribute att){
+		return (index == att.getIndex());
+	}
+	
+	public void markUsed(){
+		this.hasBeenUsed = true;
+	}
+	
+	public boolean hasBeenUsed(){
+		return this.hasBeenUsed;
 	}
 }

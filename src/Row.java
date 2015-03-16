@@ -48,7 +48,14 @@ public class Row {
 	
 	public Attribute getAttributeToTest(){
 		if(attributesTested < nonClassAttributes.size()){
-			return nonClassAttributes.get(attributesTested);
+			Attribute att = nonClassAttributes.get(attributesTested);
+			if(att.hasBeenUsed()){
+				incAttributesTested();
+				return getAttributeToTest();
+			}
+			else{
+				return att;
+			}
 		}
 		return null;
 	}
@@ -57,7 +64,28 @@ public class Row {
 		attributesTested++;
 	}
 	
+	public void resetAttributesTested(){
+		attributesTested=0;
+	}
+	
 	public boolean equals(Object o){
 		return false;
+	}
+	
+	public Attribute getAttributeWithValue(Attribute att){
+		for(Attribute a: nonClassAttributes){
+			if(a.sameAttribute(att)){
+				return a;
+			}
+		}
+		return null;
+	}
+	
+	public void markAttributeAsUsed(Attribute att){
+		for(Attribute a: nonClassAttributes){
+			if(a.sameAttribute(att)){
+				a.markUsed();
+			}
+		}
 	}
 }
