@@ -1,31 +1,21 @@
 
-public class Attribute {
+public abstract class Attribute {
 	
-	private int[] possibleValues;
-	private String name;
-	private int value;
-	private int index;
-	private boolean hasBeenUsed;
+	protected int[] possibleValues;
+	protected String name;
+	protected int value;
+	protected int index;
+	protected boolean hasBeenUsed;
 	
-	public Attribute(String name, int index,int[] possibleValues){
+	public Attribute(String name, int index, int[] possibleValues){
 		this.name = name;
 		this.index = index;
-		this.possibleValues = possibleValues;
 		this.hasBeenUsed = false;
+		this.possibleValues = possibleValues;
 	}
 	
-	public void setValue(int value){
-		boolean element = false;
-		for(int i=0; i<possibleValues.length; i++){
-			if(value == possibleValues[i]){
-				element =true;
-			}
-		}
-		if(!element){
-			System.out.println("element did not match: " + value + " index" + index);
-		}
-		this.value = value;
-	}
+	
+	public abstract void setValue(String value);
 	
 	public String getName(){
 		return name;
@@ -39,7 +29,6 @@ public class Attribute {
 		return index;
 	}
 	
-	// get the index of the current value
 	public int getCurrentValueIndex() {
 		for(int i=0; i<possibleValues.length; i++){
 			if(value == possibleValues[i]){
@@ -49,7 +38,7 @@ public class Attribute {
 		return -1;
 	}
 	
-	// get the index of the value passed
+	
 	public int getValueIndex(int testValue) {
 		for(int i=0; i<possibleValues.length; i++){
 			if(testValue == possibleValues[i]){
@@ -58,11 +47,6 @@ public class Attribute {
 		}
 		return -1;
 	}
-	
-	public int getNumPossibleValues(){
-		return possibleValues.length;
-	}
-	
 	
 	public boolean equals(Object o){
 		return false;
@@ -79,5 +63,13 @@ public class Attribute {
 	
 	public boolean hasBeenUsed(){
 		return this.hasBeenUsed;
+	}
+	
+	public String getTreePrintString(){
+		return this.name + " = " + this.value;
+	}
+	
+	public int getNumPossibleValues(){
+		return possibleValues.length;
 	}
 }

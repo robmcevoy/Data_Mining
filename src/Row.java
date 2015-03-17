@@ -21,13 +21,13 @@ public class Row {
 		String values[] = line.split(CSV_SPLIT);
 		for(int i=0; i<values.length; i++){
 			try{
-				updateRow(i, Integer.parseInt(values[i]));
+				updateRow(i, values[i]);
 			}
 			catch(java.lang.NumberFormatException e){}
 		}
 	}
 	
-	private void updateRow(int index, int value){
+	private void updateRow(int index, String value){
 		// try class attribute first
 		if(index == classAttribute.getIndex()){
 			classAttribute.setValue(value);
