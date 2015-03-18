@@ -6,12 +6,21 @@ public abstract class Attribute {
 	protected int value;
 	protected int index;
 	protected boolean hasBeenUsed;
+	protected boolean isClassAttribute;
 	
 	public Attribute(String name, int index, int[] possibleValues){
 		this.name = name;
 		this.index = index;
 		this.hasBeenUsed = false;
 		this.possibleValues = possibleValues;
+		this.isClassAttribute = false;
+	}
+	public Attribute(String name, int index, int[] possibleValues, boolean isClassAttribute){
+		this.name = name;
+		this.index = index;
+		this.hasBeenUsed = false;
+		this.possibleValues = possibleValues;
+		this.isClassAttribute = isClassAttribute;
 	}
 	
 	
@@ -71,5 +80,9 @@ public abstract class Attribute {
 	
 	public int getNumPossibleValues(){
 		return possibleValues.length;
+	}
+	
+	public boolean isClassAttribute(){
+		return this.isClassAttribute;
 	}
 }

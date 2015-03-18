@@ -4,6 +4,10 @@ public class IntegerCategoricalAttribute extends Attribute {
 	IntegerCategoricalAttribute(String name, int index, int[] possibleValues){
 		super(name, index,possibleValues); 
 	}
+	
+	IntegerCategoricalAttribute(String name, int index, int[] possibleValues, boolean isClassAttribute){
+		super(name, index,possibleValues, isClassAttribute); 
+	}
 
 	public void setValue(String valueString){
 		try{

@@ -102,7 +102,7 @@ public class AttributeCreator{
 	}
 	
 	public Attribute getClassAttribute(){
-		return new IntegerCategoricalAttribute(ACCIDENT_SEVERITY,ACCIDENT_SEVERITY_INDEX,AC_POSSIBLE_VALUES);
+		return new IntegerCategoricalAttribute(ACCIDENT_SEVERITY,ACCIDENT_SEVERITY_INDEX,AC_POSSIBLE_VALUES, true);
 	}
 	
 	public Attribute getTimeAttribute(){

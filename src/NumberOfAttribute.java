@@ -19,6 +19,7 @@ public class NumberOfAttribute extends Attribute{
 				for(int i=0; i<ranges.length-1; i++){
 					if((numberOf > ranges[i]) || (numberOf <= ranges[i+1])){
 						newValue = numberOfPossibleValues[i+1];
+						i = ranges.length;
 					}
 				}
 			}

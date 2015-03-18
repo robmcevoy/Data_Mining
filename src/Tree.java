@@ -28,6 +28,10 @@ public class Tree{
     	return children.size() > 0;
     }
     
+    public Tree getChild(int index){
+    	return children.get(index);
+    }
+    
     public Attribute getToSplitOn(){
     	return this.toSplitOn;
     }
