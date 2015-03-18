@@ -1,10 +1,7 @@
 public class LocationAttribute extends Attribute{
 	
-	private final static int[] locationPossibleValues = {1,2,3};
-	//55.528639, -3.373277
-	//55.466407, -2.296617
-	
-	private double[] longitudeRange ={-3.373277, -2.296617};
+	private final static int[] locationPossibleValues = {1,2,3,4,5,6,7};	
+	private double[] latitudeRange ={51.0, 52.0, 53.0, 54.0, 55.0, 56.0};
 	
 	public LocationAttribute(String name, int index) {
 		super(name, index, locationPossibleValues);
@@ -14,17 +11,31 @@ public class LocationAttribute extends Attribute{
 	public void setValue(String value) {
 		try{
 			int newValue;
-			double longitude = Double.parseDouble(value);
-			if(longitude > longitudeRange[0]){
+			double latitude = Double.parseDouble(value);
+			
+			if(latitude <= latitudeRange[0]){
 				newValue = locationPossibleValues[0];
 			}
-			else if((longitude< longitudeRange[0]) && (longitude > longitudeRange[1])){
+			else if((latitude > latitudeRange[0]) && (latitude < latitudeRange[1])){
 				newValue = locationPossibleValues[1];
 			}
-			else{
+			else if((latitude > latitudeRange[1]) && (latitude < latitudeRange[2])){
 				newValue = locationPossibleValues[2];
 			}
+			else if((latitude > latitudeRange[2]) && (latitude < latitudeRange[3])){
+				newValue = locationPossibleValues[3];
+			}
+			else if((latitude > latitudeRange[3]) && (latitude < latitudeRange[4])){
+				newValue = locationPossibleValues[4];
+			}
+			else if((latitude > latitudeRange[4]) && (latitude < latitudeRange[5])){
+				newValue = locationPossibleValues[5];
+			}
+			else{
+				newValue = locationPossibleValues[6];
+			}
 			this.value = newValue;
+
 		}
 		catch(Exception e){
 			this.value = locationPossibleValues[0];

@@ -45,7 +45,7 @@ public class Splitter {
 	
 	public Attribute getHighestInfoGainAtribute(){
 		resetNextAttributeToTest();
-		double highest =-1.0;
+		double highest =0.0;
 		Attribute highestAttr = null;
 		while(set.get(0).getAttributeToTest() != null){
 			double infoGain = informationGain();

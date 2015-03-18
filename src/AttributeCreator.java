@@ -54,11 +54,13 @@ public class AttributeCreator{
 	private final int DID_POLICE_OFFICE_ATTEND_INDEX = 30; 
 	private final int[] DPOA_POSSIBLE_VALUES = {-1,1,2,3};
 	private final String LOCATION = "Location";
-	private final int LOCATION_INDEX = 3;
+	private final int LOCATION_INDEX = 4;
 	private final String TIME = "Time";
 	private final int TIME_INDEX = 11;
-	private final String DATE = "Date";
-	private final int DATE_INDEX = 9;
+	private final String MONTH = "Month";
+	private final int MONTH_INDEX = 9;
+	private final String DAY = "Day";
+	private final int DAY_INDEX = 9;
 	private final String NUM_VEHICLES = "Number of Vehicles";
 	private final int NUM_VEHICLES_INDEX = 7;
 	private final String NUM_CASUALTIES = "Number of Casualties";
@@ -91,7 +93,8 @@ public class AttributeCreator{
 		nonClassAttributes.add(new NumberOfAttribute(NUM_VEHICLES, NUM_VEHICLES_INDEX));
 		nonClassAttributes.add(new NumberOfAttribute(NUM_CASUALTIES, NUM_CASUALTIES_INDEX));
 		nonClassAttributes.add(new LocationAttribute(LOCATION, LOCATION_INDEX));
-		//nonClassAttributes.add(new DateAttribute(DATE, DATE_INDEX));
+		nonClassAttributes.add(new MonthAttribute(MONTH, MONTH_INDEX));
+		nonClassAttributes.add(new DayAttribute(DAY, DAY_INDEX));
 	}
 	
 	public ArrayList<Attribute> getNonClassAttributes(){

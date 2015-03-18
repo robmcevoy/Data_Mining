@@ -1,8 +1,7 @@
 
 public class NumberOfAttribute extends Attribute{
-	
-	private final static int[] numberOfPossibleValues = {1,2,3};
-	private final int[] ranges = {2,5};
+	private final static int[] numberOfPossibleValues = {1,2,3,4,5,6,7};
+	private final int[] ranges = {1,2,3,4,5,6};
 	
 	public NumberOfAttribute(String name, int index) {
 		super(name, index, numberOfPossibleValues);
@@ -10,24 +9,26 @@ public class NumberOfAttribute extends Attribute{
 
 	public void setValue(String valueString) {
 		int numberOf;
-		int newValue;
+		int newValue = -1;
 		try{
 			numberOf = Integer.parseInt(valueString);
 			if(numberOf <= ranges[0]){
 				newValue = numberOfPossibleValues[0];
 			}
-			else if((numberOf > ranges[0]) || (numberOf <= ranges[1])){
-				newValue = numberOfPossibleValues[1];
-			}
 			else{
-				newValue = numberOfPossibleValues[2];
+				for(int i=0; i<ranges.length-1; i++){
+					if((numberOf > ranges[i]) || (numberOf <= ranges[i+1])){
+						newValue = numberOfPossibleValues[i+1];
+					}
+				}
+			}
+			if(newValue == -1){
+				newValue = numberOfPossibleValues[numberOfPossibleValues.length-1];
 			}
 			this.value = newValue;
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		
 	}
-
 }

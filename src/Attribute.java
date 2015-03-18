@@ -54,7 +54,7 @@ public abstract class Attribute {
 	
 	
 	public boolean sameAttribute(Attribute att){
-		return (index == att.getIndex());
+		return (index == att.getIndex() && name.equals(att.getName()));
 	}
 	
 	public void markUsed(){

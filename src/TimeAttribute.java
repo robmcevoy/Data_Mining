@@ -5,41 +5,33 @@ public class TimeAttribute extends Attribute{
 	
 	private Date[] timeRanges;
 	private final SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
-	private final static int[] timePossibleValues = {1,2,3};
+	private final static int[] timePossibleValues = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23};
 
 	public TimeAttribute(String name, int index) {
 		super(name, index, timePossibleValues);
-		try{
-			Date date1 = formatter.parse("08:00");
-			Date date2 = formatter.parse("16:00");
-			timeRanges = new Date[2];
-			timeRanges[0] = date1;
-			timeRanges[1] = date2;
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
 	}
 
 	@Override
 	public void setValue(String valueString) {
-		int newValue;
+		int newValue = -1;
 		try{
-			Date dateValue = formatter.parse(valueString);
-			if(dateValue.before(timeRanges[0])){
+			String hourString = valueString.substring(0,2);
+			int hour = Integer.parseInt(hourString);
+			
+			for(int i=0; i<timePossibleValues.length; i++){
+				if(hour == timePossibleValues[i]){
+					newValue = timePossibleValues[i];
+					i = timePossibleValues.length;
+				}
+			}
+			if(newValue == -1){
 				newValue = timePossibleValues[0];
-			}
-			else if((dateValue.equals(timeRanges[0])) || (dateValue.before(timeRanges[1]))){
-				newValue = timePossibleValues[1];
-			}
-			else{
-				newValue = timePossibleValues[2];
 			}
 			this.value = newValue;
 		}
 		catch(Exception e){
 			// unparseable date
-			newValue = possibleValues[0];
+			newValue = timePossibleValues[0];
 			this.value = newValue;
 		}	
 	}	
