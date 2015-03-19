@@ -9,9 +9,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 public class TreeBuilder extends JFrame{
 	
 	AttributeCreator creator = new AttributeCreator();
-	Attribute TIME = creator.getTimeAttribute();
-	int nullCount=0;
-	int numEmptySubsets=0;
+	Attribute CLASS_ATTRIBUTE = creator.getClassAttribute();
 	
 	public Tree buildTree(){
 		
@@ -24,9 +22,8 @@ public class TreeBuilder extends JFrame{
 		Attribute toSplitOn = splitter.getHighestInfoGainAtribute();
 		Tree root = new Tree(toSplitOn);
 		DefaultMutableTreeNode JRoot = new DefaultMutableTreeNode(toSplitOn.getName());
-		recursiveBuildTree(root, JRoot, splitter, splitter.getCurrentSet());
-		System.out.println("Null Count: " + nullCount);
-		System.out.println("Num Empty Subsets: " + numEmptySubsets);
+		int bestClass = splitter.getBestClassInstance(splitter.getCurrentSet());
+		recursiveBuildTree(root, JRoot, splitter, splitter.getCurrentSet(),bestClass);
 		long endTime = System.nanoTime();
 		long elapsedTime = endTime - startTime;
 		System.out.println("Time Taken: " + ((double)elapsedTime /  1000000000.0) + " seconds"); 
@@ -42,34 +39,34 @@ public class TreeBuilder extends JFrame{
         return root;
 	}
 	
-	public void recursiveBuildTree(Tree node, DefaultMutableTreeNode jtree, Splitter splitter, ArrayList<Row> set){
+	public void recursiveBuildTree(Tree node, DefaultMutableTreeNode jtree, Splitter splitter, ArrayList<Row> set, int bestClass){
 		ArrayList<ArrayList<Row>> subsets = splitter.getSubsets(set, node.getToSplitOn());
 		Attribute newToSplitOn;
 		Tree child;
-		DefaultMutableTreeNode JChild;
+		DefaultMutableTreeNode jChild;
 		for(ArrayList<Row> subset: subsets){
 			if(!splitter.endLeaf(subset)){
 				splitter.setSet(subset);
 				newToSplitOn = splitter.getHighestInfoGainAtribute();
 				if(newToSplitOn != null){
 					child = node.addChild(newToSplitOn);
-					JChild = new DefaultMutableTreeNode(newToSplitOn.getName());
-					jtree.add(JChild);
-					recursiveBuildTree(child, JChild, splitter, subset);
+					jChild = new DefaultMutableTreeNode(newToSplitOn.getName());
+					jtree.add(jChild);
+					int newBestClass = splitter.getBestClassInstance(subset);
+					recursiveBuildTree(child, jChild, splitter, subset,newBestClass);
 				}
 				else{
-					nullCount++;
+					CLASS_ATTRIBUTE.setValue(String.valueOf(bestClass));
+					jChild = new DefaultMutableTreeNode(CLASS_ATTRIBUTE.getTreePrintString());
+					jtree.add(jChild);
+					child = node.addChild(CLASS_ATTRIBUTE);
 				}
 			}
 			else{
-				if(subset.size()>0){
-					JChild = new DefaultMutableTreeNode(subset.get(0).getClassAttribute().getTreePrintString());
-					jtree.add(JChild);
-					child = node.addChild(subset.get(0).getClassAttribute());
-				}
-				else{
-					numEmptySubsets++;
-				}
+				CLASS_ATTRIBUTE.setValue(String.valueOf(bestClass));
+				jChild = new DefaultMutableTreeNode(CLASS_ATTRIBUTE.getTreePrintString());
+				jtree.add(jChild);
+				child = node.addChild(CLASS_ATTRIBUTE);
 			}
 		}
 	}

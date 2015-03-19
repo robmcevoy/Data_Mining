@@ -50,12 +50,7 @@ public class Predictor {
 			}
 		}catch(Exception e){
 			numWrongfromException++;
-			if(row.getClassAttribute().getValue() == 3){
-				correct++;
-			}
-			else{
-				incorrect++;
-			}
+			incorrect++;
 		}
 	}
 	

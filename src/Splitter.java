@@ -111,6 +111,27 @@ public class Splitter {
 		return classInstances;
 	}
 	
+	public int getBestClassInstance(ArrayList<Row> set){
+		ArrayList<Integer> instances = getNumClassesInstances(set);
+		int bestIndex=-1;
+		int best=-1;
+		for(int i=0; i<instances.size(); i++){
+			if(instances.get(i) >= best){
+				best = instances.get(i);
+				bestIndex = i;
+			}
+		}
+		if(bestIndex == 0){
+			return 1;
+		}
+		else if(bestIndex == 1){
+			return 2;
+		}
+		else{
+			return 3;
+		}
+	}
+	
 	// takes in a set of rows
 	// returns an array of subsets split on attribute values
 	public ArrayList<ArrayList<Row>> getSubsets(ArrayList<Row> set, Attribute attribute){
@@ -122,7 +143,6 @@ public class Splitter {
 		}
 		int numSubsets = subsets.size();
 		for(Row row: set){
-			//int index =row.getAttributeToTest().getValueIndex(row.getAttributeToTest().getValue());
 			int index = attribute.getValueIndex(row.getAttributeWithValue(attribute).getValue());
 			for(int i=0; i<numSubsets; i++){
 				if(i == index){
