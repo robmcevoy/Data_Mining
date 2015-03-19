@@ -1,3 +1,5 @@
+// Represents the Day of the month the accident occurred
+
 public class DayAttribute extends Attribute {
 
 	private static int[] dayPossibleValues = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,
@@ -7,7 +9,7 @@ public class DayAttribute extends Attribute {
 		super(name, index, dayPossibleValues);
 	}
 
-
+	@Override
 	public void setValue(String value) {
 		try{
 			int newValue = -1;

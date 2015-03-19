@@ -1,3 +1,4 @@
+// encapsulates an Attribute/Column from the data set
 
 public abstract class Attribute {
 	
@@ -38,6 +39,7 @@ public abstract class Attribute {
 		return index;
 	}
 	
+	// returns the index of the current value
 	public int getCurrentValueIndex() {
 		for(int i=0; i<possibleValues.length; i++){
 			if(value == possibleValues[i]){
@@ -47,7 +49,7 @@ public abstract class Attribute {
 		return -1;
 	}
 	
-	
+	// returns the index of the value passed as a parameter
 	public int getValueIndex(int testValue) {
 		for(int i=0; i<possibleValues.length; i++){
 			if(testValue == possibleValues[i]){

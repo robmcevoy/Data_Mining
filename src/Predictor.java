@@ -2,37 +2,34 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+//Takes a Decision Tree as an input and uses its to make predictions for the 2006 dataset
 
 public class Predictor {
 	
-	private Tree decisionTree;
+	private DecisionTree decisionTree;
 	private ArrayList<Row> set;
-	//private String url = "data/small_2006.csv";
-	private String url = "data/DfTRoadSafety_Accidents_2006.csv";
+	private final String URL = "data/DfTRoadSafety_Accidents_2006.csv";
 	private int correct;
 	private int incorrect;
-	private int numWrongfromException;
 
-	Predictor(Tree decisionTree){
+	Predictor(DecisionTree decisionTree){
 		this.decisionTree = decisionTree;
 		this.set = new ArrayList<Row>();
 		this.correct = 0;
 		this.incorrect = 0;
-		this.numWrongfromException = 0;
 	}
 	
 	public void predict(){
 		readFile();
+		System.out.println("Predicting..");
 		for(Row row: set){
 			recursiveTraverse(decisionTree, row);
 		}
 		double percentageCorrect = 100.00 * ((double)correct) / (correct + incorrect);
-		System.out.println("Correct: " + correct + " Incorrect: " + incorrect );
-		System.out.println("Exception Wrongs: " + numWrongfromException);
 		System.out.println("Percentage Correct: " + percentageCorrect + "%");
 	}
 	
-	public void recursiveTraverse(Tree node, Row row){
+	public void recursiveTraverse(DecisionTree node, Row row){
 		try{
 			Attribute toSplitOn = node.getToSplitOn();
 			if(!toSplitOn.isClassAttribute()){
@@ -49,23 +46,22 @@ public class Predictor {
 				}
 			}
 		}catch(Exception e){
-			numWrongfromException++;
 			incorrect++;
 		}
 	}
 	
 	public void readFile(){
+		System.out.println("Reading Prediction Data Set..");
 		BufferedReader reader;
 		try {
-			reader = new BufferedReader(new FileReader(url));
+			reader = new BufferedReader(new FileReader(URL));
 			String line = reader.readLine();
 			while((line = reader.readLine()) != null){
 				Row row = new Row();
 				row.fillRow(line);
 				set.add(row);
 			}
-			reader.close();
-			
+			reader.close();	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

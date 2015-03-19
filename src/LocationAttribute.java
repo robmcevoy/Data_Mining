@@ -1,3 +1,7 @@
+// Attribute representing location of attribute
+// splits the UK into 7 parts using latitude
+// when a value is being set it calculates which of the 7 parts the input(latitude) belongs to
+
 public class LocationAttribute extends Attribute{
 	
 	private final static int[] locationPossibleValues = {1,2,3,4,5,6,7};	
@@ -7,7 +11,6 @@ public class LocationAttribute extends Attribute{
 		super(name, index, locationPossibleValues);
 	}
 
-	@Override
 	public void setValue(String value) {
 		try{
 			int newValue;

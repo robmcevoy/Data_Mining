@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+// Represents a row from the dataset
+// A row is made up of set of Attributes
 
 public class Row {
 	
@@ -16,7 +18,6 @@ public class Row {
 		nonClassAttributes = creator.getNonClassAttributes(); 
 	}
 	
-	// update attribute values
 	public void fillRow(String line){
 		String values[] = line.split(CSV_SPLIT);
 		for(int i=0; i<values.length; i++){
@@ -28,11 +29,9 @@ public class Row {
 	}
 	
 	private void updateRow(int index, String value){
-		// try class attribute first
 		if(index == classAttribute.getIndex()){
 			classAttribute.setValue(value);
 		}
-		// else try non class attributes
 		else{
 			for(Attribute attribute: nonClassAttributes){
 				if(index == attribute.getIndex()){

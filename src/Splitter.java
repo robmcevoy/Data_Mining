@@ -2,6 +2,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+// Splitter class is used to read in the 2005 training dataset and 
+// calculate Information Gain on Attributes
+// as well as some other helper functions to help implement the TDIDT algorithm
+
 
 public class Splitter {
 	
@@ -29,8 +33,7 @@ public class Splitter {
 				row.fillRow(line);
 				set.add(row);
 			}
-			reader.close();
-			
+			reader.close();	
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -43,6 +46,8 @@ public class Splitter {
 		}
 	}
 	
+	// calculates the Information gain for all the attributes 
+	// return the attribute with the highest
 	public Attribute getHighestInfoGainAtribute(){
 		resetNextAttributeToTest();
 		double highest =0.0;
@@ -75,7 +80,6 @@ public class Splitter {
 			entropy = entropy(subset.size(), getNumClassesInstances(subset));
 			enew = enew + (((double)subset.size() /set.size()) * entropy);
 		}
-		//System.out.println("total of subsets: "  + totalSubset);
 		return enew;
 	}
 	
@@ -84,6 +88,7 @@ public class Splitter {
 		return entropy(set.size(), array);
 	}
 	
+	// calculates the number of instances of a class attributes in a set
 	public ArrayList<Integer> getNumClassesInstances(ArrayList<Row> set){
 		int numFirstClassInstances = 0;
 		int numSecondClassInstances = 0;
@@ -111,6 +116,7 @@ public class Splitter {
 		return classInstances;
 	}
 	
+	// return the class Attribute with the highest number of instances
 	public int getBestClassInstance(ArrayList<Row> set){
 		ArrayList<Integer> instances = getNumClassesInstances(set);
 		int bestIndex=-1;
@@ -136,7 +142,6 @@ public class Splitter {
 	// returns an array of subsets split on attribute values
 	public ArrayList<ArrayList<Row>> getSubsets(ArrayList<Row> set, Attribute attribute){
 		ArrayList<ArrayList<Row>> subsets = new ArrayList<ArrayList<Row>>();
-		//create subsets
 		for(int i=0; i<attribute.getNumPossibleValues(); i++){
 			ArrayList<Row> subset = new ArrayList<Row>();
 			subsets.add(subset);
@@ -153,7 +158,7 @@ public class Splitter {
 		return subsets;
 	}
 	
-	// set an end leaf
+	// is set an end leaf?
 	// ie: only one type of class attribute contained in the set
 	public boolean endLeaf(ArrayList<Row> subset){
 		ArrayList<Integer> classInstances = getNumClassesInstances(subset);
@@ -169,6 +174,7 @@ public class Splitter {
 		return true;
 	}
 	
+	// entropy equation
 	private double entropy( int numInstances, ArrayList<Integer> arrayClassOccurances){
 		double e = 0.0;
 		for(int elementInstance: arrayClassOccurances){

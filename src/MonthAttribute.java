@@ -1,3 +1,6 @@
+// Attribute represents the month the accident occurred in
+// Parses dates of format DD/MM/YY
+
 public class MonthAttribute extends Attribute {
 	
 	private static int[] monthPossibleValues = {1,2,3,4,5,6,7,8,9,10,11,12};

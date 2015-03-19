@@ -1,10 +1,10 @@
-import java.text.SimpleDateFormat;
-import java.util.Date;
+// Attribute representing time
+// Takes an input in the format HH:MM
+// Attribute does not consider minutes
+// Times are mapped into one 24 possible values which represent 24 hours a day
 
 public class TimeAttribute extends Attribute{
 	
-	private Date[] timeRanges;
-	private final SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
 	private final static int[] timePossibleValues = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23};
 
 	public TimeAttribute(String name, int index) {

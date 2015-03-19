@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// creates Attribute objects
 
 public class AttributeCreator{
 	private final String ACCIDENT_SEVERITY = "Accident Severity";
@@ -65,9 +66,6 @@ public class AttributeCreator{
 	private final int NUM_VEHICLES_INDEX = 7;
 	private final String NUM_CASUALTIES = "Number of Casualties";
 	private final int NUM_CASUALTIES_INDEX = 8;
-	//TODO police force ?
-	//TODO local authority?
-	//TODO road number 1 & 2?
 	private ArrayList<Attribute> nonClassAttributes;
 	
 	public AttributeCreator(){

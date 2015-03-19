@@ -1,3 +1,7 @@
+// Used to represent attributes 'Number of Vehicles' & 'Number of Casualties'
+// Attribute has 7 possible values
+// If the input is greater than 6 it is assigned into the last possible value
+// the majority of the data is between 0 and 6
 
 public class NumberOfAttribute extends Attribute{
 	private final static int[] numberOfPossibleValues = {1,2,3,4,5,6,7};
@@ -7,6 +11,7 @@ public class NumberOfAttribute extends Attribute{
 		super(name, index, numberOfPossibleValues);
 	}
 
+	@Override
 	public void setValue(String valueString) {
 		int numberOf;
 		int newValue = -1;

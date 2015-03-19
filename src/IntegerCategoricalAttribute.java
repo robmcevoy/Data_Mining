@@ -1,3 +1,4 @@
+// Used for all integer categorical attributes in data set
 
 public class IntegerCategoricalAttribute extends Attribute {
 		
@@ -9,6 +10,7 @@ public class IntegerCategoricalAttribute extends Attribute {
 		super(name, index,possibleValues, isClassAttribute); 
 	}
 
+	@Override
 	public void setValue(String valueString){
 		try{
 			int value = Integer.parseInt(valueString);
