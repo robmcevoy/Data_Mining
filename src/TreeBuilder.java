@@ -18,8 +18,6 @@ public class TreeBuilder extends JFrame{
 	private final String URL = "data/DfTRoadSafety_Accidents_2005.csv";
 	
 	public DecisionTree buildTree(){
-		
-		long startTime = System.nanoTime();
 		JTree tree;
 		Splitter splitter = new Splitter();
 		splitter.readFile(URL);
@@ -29,9 +27,6 @@ public class TreeBuilder extends JFrame{
 		DefaultMutableTreeNode JRoot = new DefaultMutableTreeNode(toSplitOn.getName());
 		int bestClass = splitter.getBestClassInstance(splitter.getCurrentSet());
 		recursiveBuildTree(root, JRoot, splitter, splitter.getCurrentSet(),bestClass);
-		long endTime = System.nanoTime();
-		long elapsedTime = endTime - startTime;
-		System.out.println("Time Taken: " + ((double)elapsedTime /  1000000000.0) + " seconds"); 
 		tree = new JTree(JRoot);
 		JPanel container = new JPanel();
 		container.add(tree);

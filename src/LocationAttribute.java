@@ -6,6 +6,7 @@ public class LocationAttribute extends Attribute{
 	
 	private final static int[] locationPossibleValues = {1,2,3,4,5,6,7};	
 	private double[] latitudeRange ={51.0, 52.0, 53.0, 54.0, 55.0, 56.0};
+	private final int DEFAULT_VALUE= 4;
 	
 	public LocationAttribute(String name, int index) {
 		super(name, index, locationPossibleValues);
@@ -41,7 +42,7 @@ public class LocationAttribute extends Attribute{
 
 		}
 		catch(Exception e){
-			this.value = locationPossibleValues[0];
+			this.value = locationPossibleValues[DEFAULT_VALUE];
 		}	
 	}
 }

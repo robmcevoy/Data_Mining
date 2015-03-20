@@ -24,7 +24,7 @@ public class Splitter {
 	}
 	
 	public void readFile(String url){
-		System.out.println("Reading Training Data Set..");
+		System.out.println("Reading 2005 Training Data Set..");
 		try{
 			BufferedReader reader = new BufferedReader(new FileReader(url));
 			String line = reader.readLine();

@@ -6,6 +6,7 @@
 public class NumberOfAttribute extends Attribute{
 	private final static int[] numberOfPossibleValues = {1,2,3,4,5,6,7};
 	private final int[] ranges = {1,2,3,4,5,6};
+	private final int DEFAULT_VALUE= 0;
 	
 	public NumberOfAttribute(String name, int index) {
 		super(name, index, numberOfPossibleValues);
@@ -18,7 +19,7 @@ public class NumberOfAttribute extends Attribute{
 		try{
 			numberOf = Integer.parseInt(valueString);
 			if(numberOf <= ranges[0]){
-				newValue = numberOfPossibleValues[0];
+				newValue = numberOfPossibleValues[DEFAULT_VALUE];
 			}
 			else{
 				for(int i=0; i<ranges.length-1; i++){

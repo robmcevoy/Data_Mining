@@ -6,7 +6,8 @@
 public class TimeAttribute extends Attribute{
 	
 	private final static int[] timePossibleValues = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23};
-
+	private final int DEFAULT_VALUE= 0;
+	
 	public TimeAttribute(String name, int index) {
 		super(name, index, timePossibleValues);
 	}
@@ -31,7 +32,7 @@ public class TimeAttribute extends Attribute{
 		}
 		catch(Exception e){
 			// unparseable date
-			newValue = timePossibleValues[0];
+			newValue = timePossibleValues[DEFAULT_VALUE];
 			this.value = newValue;
 		}	
 	}	

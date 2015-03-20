@@ -51,7 +51,7 @@ public class Predictor {
 	}
 	
 	public void readFile(){
-		System.out.println("Reading Prediction Data Set..");
+		System.out.println("Reading 2006 Data Set..");
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader(URL));
